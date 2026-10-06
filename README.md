@@ -87,3 +87,4 @@ Truy cập: `http://localhost:8080`
 
 ## 📄 Bản Quyền & Giấy Phép
 Dự án được phát triển phục vụ mục đích hỗ trợ thí sinh và phụ huynh trong kỳ thi Tốt nghiệp THPT & Tuyển sinh Đại học tại Việt Nam.
+"# totnghiepthpt2025" 
