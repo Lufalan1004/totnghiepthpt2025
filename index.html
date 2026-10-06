@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UniScore VN - Cổng Tính Điểm Xét Tuyển & Tra Cứu Điểm Chuẩn Đại Học</title>
+  <meta name="description" content="Hệ thống tính điểm xét tuyển đại học chuẩn quy chế Bộ GD&ĐT, tra cứu điểm chuẩn 3 năm gần nhất các trường ĐH hàng đầu Việt Nam và gợi ý phân bổ nguyện vọng thông minh.">
+  <meta name="keywords" content="tính điểm đại học, điểm chuẩn đại học 2024 2025, tra cứu điểm chuẩn, bách khoa, kinh tế quốc dân, ngoại thương, nguyện vọng thpt">
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Ambient Light Effects -->
+  <div class="ambient-glow-1"></div>
+  <div class="ambient-glow-2"></div>
+
+  <!-- Main Navigation -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#" class="brand-logo" id="navBrandLogo">
+        <div class="brand-icon">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <div>
+          <span class="brand-title">UniScore VN</span>
+          <span class="brand-sub">Định vị cơ hội vào Đại học</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li>
+          <button class="nav-item-btn active" data-tab="tab-calc" id="btnNavCalc">
+            <i class="fa-solid fa-calculator"></i> Máy Tính Điểm
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="tab-match" id="btnNavMatch">
+            <i class="fa-solid fa-crosshairs"></i> Gợi Ý Nguyện Vọng
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="tab-explore" id="btnNavExplore">
+            <i class="fa-solid fa-building-columns"></i> Tra Cứu Điểm Chuẩn
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="tab-guide" id="btnNavGuide">
+            <i class="fa-solid fa-book-open"></i> Cẩm Nang Tuyển Sinh
+          </button>
+        </li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="wishlist-pill-btn" id="btnOpenWishlistTab" title="Xem danh sách nguyện vọng đã lưu">
+          <i class="fa-solid fa-bookmark" style="color: var(--primary);"></i>
+          <span>Nguyện vọng</span>
+          <span class="wishlist-badge" id="navWishlistBadge">0</span>
+        </button>
+        <button class="theme-toggle-btn" id="btnThemeToggle" title="Đổi giao diện Sáng / Tối">
+          <i class="fa-solid fa-moon" id="themeIcon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="hero-section">
+    <div class="hero-pill">
+      <i class="fa-solid fa-sparkles"></i> Quy chế tuyển sinh & Công thức cộng điểm ưu tiên mới nhất
+    </div>
+    <h1 class="hero-title">
+      Cổng Tính Điểm & Tra Cứu <span class="hero-gradient-text">Điểm Chuẩn Đại Học</span>
+    </h1>
+    <p class="hero-desc">
+      Hệ thống hỗ trợ thí sinh toàn quốc tính điểm thi THPT, học bạ, ĐGNL, áp dụng công thức giảm tuyến tính điểm ưu tiên của Bộ GD&ĐT và phân tích xác suất trúng tuyển vào các trường đại học hàng đầu.
+    </p>
+
+    <!-- Quick Stats -->
+    <div class="stats-strip">
+      <div class="stat-item">
+        <div class="stat-icon blue"><i class="fa-solid fa-university"></i></div>
+        <div>
+          <div class="stat-value" id="statUniCount">35+</div>
+          <div class="stat-label">Trường ĐH Hàng Đầu</div>
+        </div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon cyan"><i class="fa-solid fa-laptop-code"></i></div>
+        <div>
+          <div class="stat-value" id="statMajorCount">180+</div>
+          <div class="stat-label">Ngành Tuyển Sinh Mũi Nhọn</div>
+        </div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon green"><i class="fa-solid fa-clock-rotate-left"></i></div>
+        <div>
+          <div class="stat-value">3 Năm</div>
+          <div class="stat-label">Dữ Liệu Chuẩn 2022 - 2024</div>
+        </div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon amber"><i class="fa-solid fa-certificate"></i></div>
+        <div>
+          <div class="stat-value">15+ Khối</div>
+          <div class="stat-label">Tổ Hợp A00, A01, D01...</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Interactive Tabs & Contents -->
+  <main class="main-wrapper">
+
+    <!-- Secondary Mobile Tab Buttons -->
+    <div class="app-tabs-header">
+      <button class="tab-nav-btn active" data-tab="tab-calc">
+        <i class="fa-solid fa-calculator"></i> Máy Tính Điểm Xét Tuyển
+      </button>
+      <button class="tab-nav-btn" data-tab="tab-match">
+        <i class="fa-solid fa-bullseye"></i> Gợi Ý & Đánh Giá Đỗ Trượt
+      </button>
+      <button class="tab-nav-btn" data-tab="tab-explore">
+        <i class="fa-solid fa-database"></i> Kho Điểm Chuẩn Toàn Quốc
+      </button>
+      <button class="tab-nav-btn" data-tab="tab-wishlist">
+        <i class="fa-solid fa-list-check"></i> Xếp Nguyện Vọng Thông Minh (<span id="tabWishlistCount">0</span>)
+      </button>
+      <button class="tab-nav-btn" data-tab="tab-guide">
+        <i class="fa-solid fa-circle-question"></i> Hướng Dẫn & Quy Chế
+      </button>
+    </div>
+
+    <!-- ==========================================
+         TAB 1: MÁY TÍNH ĐIỂM XÉT TUYỂN
+         ========================================== -->
+    <div class="tab-pane active" id="tab-calc">
+      <div class="calc-layout">
+        
+        <!-- Left: Input Area -->
+        <div class="calc-card">
+          <div class="calc-header">
+            <div class="calc-title-box">
+              <h3><i class="fa-solid fa-sliders" style="color: var(--primary);"></i> Nhập Thông Tin Điểm Số</h3>
+              <p>Chọn phương thức xét tuyển và nhập điểm từng môn</p>
+            </div>
+            <div class="calc-method-pills">
+              <button class="method-btn active" data-method="thpt" id="btnMethodThpt">Điểm Thi THPT</button>
+              <button class="method-btn" data-method="hocba" id="btnMethodHocBa">Xét Học Bạ</button>
+              <button class="method-btn" data-method="dgnl" id="btnMethodDgnl">ĐGNL / ĐGTD</button>
+              <button class="method-btn" data-method="ielts" id="btnMethodIelts">Quy Đổi IELTS</button>
+            </div>
+          </div>
+
+          <!-- SUB-FORM 1: THI TỐT NGHIỆP THPT -->
+          <div class="method-form-box" id="form-thpt">
+            <h4 style="font-size: 0.95rem; margin-bottom: 1rem; color: var(--text-main); font-weight: 700;">
+              <i class="fa-solid fa-pen-to-square" style="color: var(--primary);"></i> 1. Nhập điểm các môn thi THPT (thang 10):
+            </h4>
+            
+            <div class="subject-grid">
+              <div class="subject-input-box">
+                <div class="subject-label">
+                  <span>Toán học</span>
+                  <span class="subject-tag">Bắt buộc</span>
+                </div>
+                <input type="number" id="score_math" class="subject-input" placeholder="0.0" min="0" max="10" step="0.1" value="8.6">
+              </div>
+
+              <div class="subject-input-box">
+                <div class="subject-label">
+                  <span>Ngữ văn</span>
+                  <span class="subject-tag">Bắt buộc</span>
+                </div>
+                <input type="number" id="score_literature" class="subject-input" placeholder="0.0" min="0" max="10" step="0.1" value="8.0">
+              </div>
+
+              <div class="subject-input-box">
+                <div class="subject-label">
+                  <span>Tiếng Anh</span>
+                  <span class="subject-tag">Ngoại ngữ</span>
+                </div>
+                <input type="number" id="score_english" class="subject-input" placeholder="0.0" min="0" max="10" step="0.1" value="8.8">
+              </div>
+
+              <div class="subject-input-box">
+                <div class="subject-label">
+                  <span>Vật lý</span>
+                  <span class="subject-tag">KHTN</span>
+                </div>
+                <input type="number" id="score_physics" class="subject-input" placeholder="0.0" min="0" max="10" step="0.1" value="8.75">
+              </div>
+
+              <div class="subject-input-box">
+                <div class="subject-label">
+                  <span>Hóa học</span>
+                  <span class="subject-tag">KHTN</span>
+                </div>
+                <input type="number" id="score_chemistry" class="subject-input" placeholder="0.0" min="0" max="10" step="0.1" value="8.25">
+              </div>
+
+              <div class="subject-input-box">
+                <div class="subject-label">
+                  <span>Sinh học</span>
+                  <span class="subject-tag">KHTN</span>
+                </div>
+                <input type="number" id="score_biology" class="subject-input" placeholder="0.0" min="0" max="10" step="0.1" value="7.5">
+              </div>
+
+              <div class="subject-input-box">
+                <div class="subject-label">
+                  <span>Lịch sử</span>
+                  <span class="subject-tag">KHXH</span>
+                </div>
+                <input type="number" id="score_history" class="subject-input" placeholder="0.0" min="0" max="10" step="0.1" value="8.0">
+              </div>
+
+              <div class="subject-input-box">
+                <div class="subject-label">
+                  <span>Địa lý</span>
+                  <span class="subject-tag">KHXH</span>
+                </div>
+                <input type="number" id="score_geography" class="subject-input" placeholder="0.0" min="0" max="10" step="0.1" value="7.75">
+              </div>
+
+              <div class="subject-input-box">
+                <div class="subject-label">
+                  <span>GDCD</span>
+                  <span class="subject-tag">KHXH</span>
+                </div>
+                <input type="number" id="score_gdcd" class="subject-input" placeholder="0.0" min="0" max="10" step="0.1" value="9.0">
+              </div>
+            </div>
+
+            <!-- Priority Settings -->
+            <h4 style="font-size: 0.95rem; margin-bottom: 1rem; color: var(--text-main); font-weight: 700;">
+              <i class="fa-solid fa-award" style="color: var(--primary);"></i> 2. Chế độ ưu tiên & Khuyến khích:
+            </h4>
+            <div class="priority-settings-grid">
+              <div class="form-group">
+                <label for="selectRegion">Khu vực ưu tiên:</label>
+                <select id="selectRegion" class="form-select">
+                  <option value="KV3">Khu vực 3 (Không cộng - 0.0đ)</option>
+                  <option value="KV2">Khu vực 2 (Cộng 0.25đ)</option>
+                  <option value="KV2-NT">Khu vực 2 - NT (Cộng 0.50đ)</option>
+                  <option value="KV1" selected>Khu vực 1 (Cộng 0.75đ)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="selectTarget">Đối tượng ưu tiên:</label>
+                <select id="selectTarget" class="form-select">
+                  <option value="0" selected>Không thuộc đối tượng ưu tiên (0đ)</option>
+                  <option value="2.0">Nhóm UT 1: ĐT 01, 02, 03, 04 (Cộng 2.0đ)</option>
+                  <option value="1.0">Nhóm UT 2: ĐT 05, 06, 07 (Cộng 1.0đ)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="inputBonus">Điểm khuyến khích (nếu có):</label>
+                <input type="number" id="inputBonus" class="form-input" placeholder="0.0" min="0" max="4" step="0.25" value="0">
+              </div>
+
+              <div class="form-group">
+                <label for="selectMultiplier">Hệ số môn chính (nếu có):</label>
+                <select id="selectMultiplier" class="form-select">
+                  <option value="none" selected>Không nhân đôi (Chuẩn thang 30)</option>
+                  <option value="math">Toán nhân hệ số 2</option>
+                  <option value="english">Tiếng Anh nhân hệ số 2</option>
+                  <option value="literature">Ngữ văn nhân hệ số 2</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Regulations Notice Box -->
+            <div class="notice-box">
+              <i class="fa-solid fa-circle-info notice-icon"></i>
+              <div>
+                <strong>Quy chế điểm ưu tiên Bộ GD&ĐT (Áp dụng từ 2023):</strong> Thí sinh đạt từ <strong>22.5 điểm</strong> trở lên (khi quy đổi về thang 30), điểm ưu tiên sẽ giảm dần tuyến tính theo công thức: <br>
+                <code>Điểm UT = [(30 - Tổng điểm đạt được) / 7.5] × Mức điểm ưu tiên quy định</code>
+              </div>
+            </div>
+
+            <button type="button" class="btn-calc-action" id="btnCalculateScores">
+              <i class="fa-solid fa-calculator"></i> Tính Điểm & Xếp Hạng Tổ Hợp Tối Ưu
+            </button>
+          </div>
+
+          <!-- SUB-FORM 2: XÉT HỌC BẠ THPT -->
+          <div class="method-form-box" id="form-hocba" style="display: none;">
+            <div class="notice-box" style="margin-bottom: 1.25rem;">
+              <i class="fa-solid fa-school notice-icon"></i>
+              <div>
+                <strong>Phương thức xét Học bạ THPT:</strong> Điểm trung bình của 3 môn thuộc tổ hợp xét tuyển trong các học kỳ theo đề án của từng trường (5 học kỳ, 6 học kỳ hoặc cả năm lớp 12).
+              </div>
+            </div>
+
+            <div class="priority-settings-grid" style="margin-bottom: 1.25rem;">
+              <div class="form-group">
+                <label>Hình thức tính điểm học bạ:</label>
+                <select id="hb_method_type" class="form-select">
+                  <option value="5sem">Trung bình 5 học kỳ (HK1, HK2 lớp 10, 11 + HK1 lớp 12)</option>
+                  <option value="6sem">Trung bình 6 học kỳ (Cả 3 năm cấp 3)</option>
+                  <option value="grade12" selected>Điểm trung bình cả năm lớp 12</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Chọn tổ hợp xét tuyển:</label>
+                <select id="hb_combo_select" class="form-select">
+                  <option value="A00">A00 (Toán, Vật lý, Hóa học)</option>
+                  <option value="A01">A01 (Toán, Vật lý, Tiếng Anh)</option>
+                  <option value="D01" selected>D01 (Toán, Ngữ văn, Tiếng Anh)</option>
+                  <option value="D07">D07 (Toán, Hóa học, Tiếng Anh)</option>
+                  <option value="B00">B00 (Toán, Hóa học, Sinh học)</option>
+                  <option value="C00">C00 (Ngữ văn, Lịch sử, Địa lý)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="subject-grid" id="hb_inputs_container">
+              <div class="subject-input-box">
+                <div class="subject-label"><span id="hb_m1_label">Điểm Môn 1 (Toán)</span></div>
+                <input type="number" id="hb_m1" class="subject-input" value="8.5" min="0" max="10" step="0.1">
+              </div>
+              <div class="subject-input-box">
+                <div class="subject-label"><span id="hb_m2_label">Điểm Môn 2 (Ngữ văn)</span></div>
+                <input type="number" id="hb_m2" class="subject-input" value="8.2" min="0" max="10" step="0.1">
+              </div>
+              <div class="subject-input-box">
+                <div class="subject-label"><span id="hb_m3_label">Điểm Môn 3 (Tiếng Anh)</span></div>
+                <input type="number" id="hb_m3" class="subject-input" value="8.8" min="0" max="10" step="0.1">
+              </div>
+            </div>
+
+            <button type="button" class="btn-calc-action" id="btnCalculateHocBa">
+              <i class="fa-solid fa-calculator"></i> Tính Điểm Xét Học Bạ
+            </button>
+          </div>
+
+          <!-- SUB-FORM 3: ĐÁNH GIÁ NĂNG LỰC / TƯ DUY -->
+          <div class="method-form-box" id="form-dgnl" style="display: none;">
+            <div class="notice-box">
+              <i class="fa-solid fa-brain notice-icon"></i>
+              <div>
+                <strong>Quy đổi kỳ thi ĐGNL & ĐGTD:</strong> Hệ thống tự động chuẩn hóa điểm các kỳ thi về thang điểm 30 tương đương để đối chiếu với điểm chuẩn chung.
+              </div>
+            </div>
+
+            <div class="priority-settings-grid">
+              <div class="form-group">
+                <label>Kỳ thi tham gia:</label>
+                <select id="dgnl_exam_type" class="form-select">
+                  <option value="hcm">ĐHQG TP.HCM - ĐGNL (Thang 1200 điểm)</option>
+                  <option value="hn">ĐHQG Hà Nội - HSA (Thang 150 điểm)</option>
+                  <option value="hust">ĐH Bách Khoa Hà Nội - TSA (Thang 100 điểm)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label id="dgnl_score_label">Điểm số bạn đạt được:</label>
+                <input type="number" id="dgnl_score_val" class="form-input" value="850" placeholder="Nhập điểm thi...">
+              </div>
+            </div>
+
+            <button type="button" class="btn-calc-action" id="btnCalculateDgnl">
+              <i class="fa-solid fa-calculator"></i> Quy Đổi Thang 30 & Phân Tích
+            </button>
+          </div>
+
+          <!-- SUB-FORM 4: QUY ĐỔI CHỨNG CHỈ IELTS / VSTEP -->
+          <div class="method-form-box" id="form-ielts" style="display: none;">
+            <div class="notice-box">
+              <i class="fa-solid fa-globe notice-icon"></i>
+              <div>
+                <strong>Bảng quy đổi chứng chỉ Tiếng Anh:</strong> Nhiều trường ĐH (NEU, FTU, HUST, UEH...) cho phép quy đổi điểm IELTS/VSTEP sang điểm 10 môn Tiếng Anh và cộng điểm thưởng tuyển sinh kết hợp.
+              </div>
+            </div>
+
+            <div class="priority-settings-grid">
+              <div class="form-group">
+                <label>Chứng chỉ bạn có:</label>
+                <select id="cert_type" class="form-select">
+                  <option value="ielts" selected>IELTS Academic</option>
+                  <option value="toefl">TOEFL iBT</option>
+                  <option value="vstep">VSTEP (Bộ GD&ĐT)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Mức điểm / Band điểm:</label>
+                <select id="cert_band" class="form-select">
+                  <option value="8.5">IELTS 8.5 - 9.0</option>
+                  <option value="8.0">IELTS 8.0</option>
+                  <option value="7.5">IELTS 7.5</option>
+                  <option value="7.0">IELTS 7.0</option>
+                  <option value="6.5" selected>IELTS 6.5</option>
+                  <option value="6.0">IELTS 6.0</option>
+                  <option value="5.5">IELTS 5.5</option>
+                  <option value="5.0">IELTS 5.0</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="background: var(--bg-card-subtle); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1.5rem;">
+              <h5 style="font-weight: 800; margin-bottom: 0.5rem;"><i class="fa-solid fa-table-list"></i> Điểm quy đổi môn Tiếng Anh tại các trường lớn:</h5>
+              <div class="table-responsive">
+                <table class="uni-benchmark-table" style="font-size: 0.85rem;">
+                  <thead>
+                    <tr>
+                      <th>Band IELTS</th>
+                      <th>Bách Khoa (HUST)</th>
+                      <th>KT Quốc Dân (NEU)</th>
+                      <th>Ngoại Thương (FTU)</th>
+                      <th>ĐH Kinh Tế (UEH)</th>
+                    </tr>
+                  </thead>
+                  <tbody id="ieltsConversionTableBody">
+                    <!-- Populated by JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <button type="button" class="btn-calc-action" id="btnApplyIeltsToCalc">
+              <i class="fa-solid fa-circle-check"></i> Áp Dụng Điểm Quy Đổi Này Vào Môn Tiếng Anh THPT
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Right: Sticky Summary Panel -->
+        <aside class="calc-summary-panel">
+          <div class="summary-title">
+            <span>Kết Quả Đánh Giá</span>
+            <span class="badge" style="background: var(--primary-light); color: var(--primary); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">Chính thức</span>
+          </div>
+
+          <!-- Highlight Card -->
+          <div class="best-combo-card" id="bestComboCard">
+            <div class="best-combo-header">
+              <span class="best-combo-badge"><i class="fa-solid fa-trophy"></i> Tổ hợp điểm cao nhất</span>
+              <span id="bestComboMultiplierBadge" style="font-size: 0.72rem; font-weight: 700; opacity: 0.9;"></span>
+            </div>
+            <div class="best-combo-code" id="bestComboCode">A01</div>
+            <div class="best-combo-score" id="bestComboScore">26.35</div>
+            <div class="best-combo-desc" id="bestComboDesc">Toán, Vật lý, Tiếng Anh</div>
+          </div>
+
+          <!-- Breakdown list -->
+          <ul class="score-breakdown-list">
+            <li class="score-breakdown-item">
+              <span style="color: var(--text-muted);">Tổng điểm 3 môn gốc:</span>
+              <span style="font-weight: 700;" id="sumRawScore">25.60</span>
+            </li>
+            <li class="score-breakdown-item">
+              <span style="color: var(--text-muted);">Mức điểm UT lý thuyết:</span>
+              <span style="font-weight: 700;" id="sumTheoreticalPriority">+0.75</span>
+            </li>
+            <li class="score-breakdown-item">
+              <span style="color: var(--text-muted);">Điểm UT thực nhận (giảm tuyến tính):</span>
+              <span style="font-weight: 700; color: var(--success);" id="sumActualPriority">+0.44</span>
+            </li>
+            <li class="score-breakdown-item">
+              <span style="color: var(--text-muted);">Điểm khuyến khích:</span>
+              <span style="font-weight: 700;" id="sumBonusScore">+0.00</span>
+            </li>
+            <li class="score-breakdown-item">
+              <span>ĐIỂM XÉT TUYỂN CHÍNH THỨC:</span>
+              <span id="sumFinalScore">26.04</span>
+            </li>
+          </ul>
+
+          <!-- Other Combo Rankings -->
+          <div class="other-combos-title">Xếp hạng các tổ hợp khác của bạn</div>
+          <div class="other-combos-list" id="otherCombosList">
+            <!-- Populated dynamically -->
+          </div>
+
+          <button type="button" class="btn-goto-match" id="btnMatchFromCalc">
+            <i class="fa-solid fa-magnifying-glass-chart"></i> Phân Tích Cơ Hội Với Điểm Này
+          </button>
+        </aside>
+
+      </div>
+    </div>
+
+    <!-- ==========================================
+         TAB 2: GỢI Ý NGÀNH & ĐÁNH GIÁ CƠ HỘI ĐỖ TRƯỢT
+         ========================================== -->
+    <div class="tab-pane" id="tab-match">
+      
+      <!-- Filter Toolbar -->
+      <div class="filter-toolbar">
+        <div class="filter-grid">
+          <div class="search-input-wrap">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="matchSearchInput" class="form-input" placeholder="Tìm theo tên ngành, tên trường hoặc mã ngành...">
+          </div>
+
+          <div>
+            <select id="matchComboSelect" class="form-select">
+              <option value="ALL">Tất cả tổ hợp môn</option>
+              <option value="A00">Khối A00 (Toán, Lý, Hóa)</option>
+              <option value="A01" selected>Khối A01 (Toán, Lý, Anh)</option>
+              <option value="B00">Khối B00 (Toán, Hóa, Sinh)</option>
+              <option value="C00">Khối C00 (Văn, Sử, Địa)</option>
+              <option value="D01">Khối D01 (Toán, Văn, Anh)</option>
+              <option value="D07">Khối D07 (Toán, Hóa, Anh)</option>
+            </select>
+          </div>
+
+          <div>
+            <input type="number" id="userTargetScoreInput" class="form-input" placeholder="Điểm của bạn..." step="0.05" value="26.5" title="Nhập điểm xét tuyển của bạn để hệ thống so sánh">
+          </div>
+
+          <div>
+            <select id="matchRegionSelect" class="form-select">
+              <option value="all">Toàn quốc</option>
+              <option value="bac">Miền Bắc</option>
+              <option value="trung">Miền Trung</option>
+              <option value="nam">Miền Nam</option>
+            </select>
+          </div>
+
+          <div>
+            <select id="matchChanceSelect" class="form-select">
+              <option value="all">Mọi mức cơ hội</option>
+              <option value="safe">🟢 Khả năng đỗ cao (An toàn)</option>
+              <option value="medium">🟡 Vừa sức (Cạnh tranh)</option>
+              <option value="risky">🔴 Thử thách (Mạo hiểm)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Category Filter Pills -->
+        <div class="category-pills-bar" id="categoryPillsBar">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Strategy Advice Banner -->
+      <div class="strategy-banner">
+        <div class="strategy-info">
+          <div class="strategy-avatar">
+            <i class="fa-solid fa-robot"></i>
+          </div>
+          <div class="strategy-text">
+            <h4>Chiến Thuật Phân Bổ Nguyện Vọng "3 Tầng" Thông Minh</h4>
+            <p>Không nên dồn toàn bộ nguyện vọng vào ngành điểm quá cao hoặc quá thấp. Hãy phân bổ: <strong>20% Mơ ước</strong> (Thử thách) + <strong>50% Vừa sức</strong> (Cạnh tranh) + <strong>30% An toàn</strong> (Chống trượt).</p>
+          </div>
+        </div>
+        <div class="strategy-badges">
+          <span class="chance-badge-guide safe"><i class="fa-solid fa-shield-halved"></i> Đỗ cao: Điểm bạn > Điểm chuẩn +1.0</span>
+          <span class="chance-badge-guide medium"><i class="fa-solid fa-scale-balanced"></i> Vừa sức: Lệch từ -0.5 đến +1.0</span>
+          <span class="chance-badge-guide risky"><i class="fa-solid fa-fire"></i> Thử thách: Thấp hơn -1.5 đến -0.5</span>
+        </div>
+      </div>
+
+      <!-- Matches Results Counter & Header -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+        <h3 style="font-size: 1.25rem; font-weight: 800;">
+          Danh Sách Ngành Phù Hợp (<span id="matchResultsCount" style="color: var(--primary);">0</span> kết quả)
+        </h3>
+        <div style="font-size: 0.85rem; color: var(--text-muted);">
+          Sắp xếp theo: <strong>Độ chênh lệch điểm & Cơ hội trúng tuyển</strong>
+        </div>
+      </div>
+
+      <!-- Results Grid -->
+      <div class="matches-grid" id="matchesResultsGrid">
+        <!-- Rendered by JS -->
+      </div>
+
+    </div>
+
+    <!-- ==========================================
+         TAB 3: TRA CỨU ĐIỂM CHUẨN TOÀN DIỆN
+         ========================================== -->
+    <div class="tab-pane" id="tab-explore">
+      <div class="table-card">
+        
+        <!-- Table Toolbar -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 0.25rem;">
+              <i class="fa-solid fa-building-columns" style="color: var(--primary);"></i> Cơ Sở Dữ Liệu Điểm Chuẩn 3 Năm Gần Nhất
+            </h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Tra cứu điểm chuẩn năm 2024, 2023, 2022 và tiêu chí phụ xét tuyển</p>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <select id="exploreUniFilter" class="form-select" style="min-width: 220px;">
+              <option value="all">Tất cả các trường ĐH</option>
+              <!-- Filled dynamically -->
+            </select>
+            <input type="text" id="exploreSearchInput" class="form-input" placeholder="Tìm tên ngành, mã trường..." style="min-width: 220px;">
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="uni-benchmark-table" id="exploreTable">
+            <thead>
+              <tr>
+                <th>Trường Đại học</th>
+                <th>Mã & Tên Ngành</th>
+                <th>Tổ hợp xét tuyển</th>
+                <th>Điểm 2024</th>
+                <th>Điểm 2023</th>
+                <th>Điểm 2022</th>
+                <th>Xu hướng</th>
+                <th>Tiêu chí phụ / Ghi chú</th>
+                <th>Hành động</th>
+              </tr>
+            </thead>
+            <tbody id="exploreTableBody">
+              <!-- Rendered by JS -->
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ==========================================
+         TAB 4: DANH SÁCH NGUYỆN VỌNG THÔNG MINH
+         ========================================== -->
+    <div class="tab-pane" id="tab-wishlist">
+      <div class="wishlist-layout">
+        
+        <!-- Left: Ordered List -->
+        <div class="wishlist-table-card">
+          <div class="wishlist-header-bar">
+            <div>
+              <div class="wishlist-count-title">
+                Phiếu Đăng Ký Nguyện Vọng Của Tôi (<span id="wishlistTotalCount">0</span> nguyện vọng)
+              </div>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Hệ thống xét tuyển theo thứ tự ưu tiên từ trên xuống dưới (NV1 là ưu tiên cao nhất).</p>
+            </div>
+            
+            <div class="wishlist-tools">
+              <button class="btn-wishlist-tool" id="btnPrintWishlist" title="In phiếu hoặc xuất file PDF">
+                <i class="fa-solid fa-print"></i> In / Xuất PDF
+              </button>
+              <button class="btn-wishlist-tool" id="btnClearWishlist" title="Xóa toàn bộ nguyện vọng">
+                <i class="fa-solid fa-trash-can"></i> Xóa tất cả
+              </button>
+            </div>
+          </div>
+
+          <div class="wishlist-items-list" id="wishlistItemsContainer">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Right: Strategic Analysis & Risk Radar -->
+        <aside class="optimizer-card">
+          <h4 style="font-size: 1.15rem; font-weight: 800; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fa-solid fa-chart-pie" style="color: var(--primary);"></i> Đánh Giá Cân Bằng Chiến Lược
+          </h4>
+          <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.25rem;">
+            Phân tích tỷ lệ an toàn của danh sách nguyện vọng theo điểm số hiện tại của bạn.
+          </p>
+
+          <div class="strategy-meter-box">
+            <div class="meter-labels">
+              <span style="color: var(--danger);" id="meterRiskyLabel">🔴 Thử thách: 0%</span>
+              <span style="color: var(--warning);" id="meterMediumLabel">🟡 Vừa sức: 0%</span>
+              <span style="color: var(--success);" id="meterSafeLabel">🟢 An toàn: 0%</span>
+            </div>
+            <div class="meter-bar">
+              <div class="meter-segment risky" id="meterRiskyBar" style="width: 0%;"></div>
+              <div class="meter-segment medium" id="meterMediumBar" style="width: 0%;"></div>
+              <div class="meter-segment safe" id="meterSafeBar" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <div class="strategy-advice-text" id="strategyAdviceBox">
+            <i class="fa-solid fa-lightbulb" style="color: var(--warning); margin-right: 0.35rem;"></i>
+            <span>Chưa có nguyện vọng nào trong danh sách. Hãy nhấn "Thêm vào NV" ở mục Gợi ý hoặc Tra cứu để hệ thống đánh giá chiến lược giúp bạn!</span>
+          </div>
+
+          <div style="background: var(--bg-card-subtle); border-radius: var(--radius-md); padding: 1rem; font-size: 0.85rem;">
+            <h5 style="font-weight: 800; margin-bottom: 0.5rem;"><i class="fa-solid fa-bell" style="color: var(--primary);"></i> Lưu ý vàng khi đặt NV:</h5>
+            <ul style="padding-left: 1.25rem; line-height: 1.5; color: var(--text-muted);">
+              <li>Mỗi thí sinh chỉ trúng tuyển duy nhất <strong>1 nguyện vọng cao nhất</strong>.</li>
+              <li>Nếu đã trúng tuyển NV1, hệ thống sẽ tự động hủy xét tuyển các NV sau.</li>
+              <li>Nguyện vọng 1 phải là ngành bạn THỰC SỰ ĐAM MÊ NHẤT.</li>
+              <li>Luôn dành ít nhất 1-2 nguyện vọng cuối làm "phao cứu sinh" có điểm chuẩn thấp hơn điểm của bạn từ 2-3 điểm.</li>
+            </ul>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+
+    <!-- ==========================================
+         TAB 5: CẨM NANG & QUY CHẾ TUYỂN SINH
+         ========================================== -->
+    <div class="tab-pane" id="tab-guide">
+      <div class="calc-card" style="margin-bottom: 2rem;">
+        <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 1rem; color: var(--primary);">
+          <i class="fa-solid fa-graduation-cap"></i> Cẩm Nang Tuyển Sinh & Quy Chế Điểm Ưu Tiên Mới Nhất
+        </h3>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+          
+          <div style="background: var(--bg-card-subtle); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <h4 style="font-size: 1.05rem; font-weight: 800; margin-bottom: 0.75rem; color: var(--text-main); display: flex; align-items: center; gap: 0.5rem;">
+              <i class="fa-solid fa-scale-balanced" style="color: var(--primary);"></i> 1. Công thức giảm điểm ưu tiên (Thông tư Bộ)
+            </h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6;">
+              Kể từ kỳ thi tuyển sinh năm 2023, thí sinh đạt tổng điểm từ 22.5 điểm trở lên (khi quy về thang 30) sẽ không được cộng nguyên vẹn mức điểm ưu tiên khu vực và đối tượng, mà được giảm dần đều:
+            </p>
+            <div style="background: var(--bg-card); padding: 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); margin: 0.75rem 0; font-family: monospace; font-size: 0.88rem;">
+              Điểm UT = [(30 - Tổng điểm 3 môn) / 7.5] × (Điểm KV + Điểm ĐT)
+            </div>
+            <p style="font-size: 0.82rem; color: var(--text-muted);">
+              Ý nghĩa: Tránh hiện tượng thí sinh đạt 29-30 điểm sau khi cộng điểm ưu tiên vượt ngưỡng 30 điểm và mất công bằng với thí sinh thủ khoa.
+            </p>
+          </div>
+
+          <div style="background: var(--bg-card-subtle); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <h4 style="font-size: 1.05rem; font-weight: 800; margin-bottom: 0.75rem; color: var(--text-main); display: flex; align-items: center; gap: 0.5rem;">
+              <i class="fa-solid fa-arrows-up-down-left-right" style="color: var(--accent);"></i> 2. Nguyên tắc lọc ảo của Bộ GD&ĐT
+            </h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6;">
+              Hệ thống lọc ảo của Bộ GD&ĐT áp dụng trên toàn quốc cho tất cả các phương thức xét tuyển:
+            </p>
+            <ul style="font-size: 0.85rem; color: var(--text-muted); padding-left: 1.25rem; margin-top: 0.5rem; line-height: 1.6;">
+              <li>Không giới hạn số lượng nguyện vọng đăng ký.</li>
+              <li>Thí sinh bình đẳng điểm xét tuyển: Thí sinh đặt ngành ở NV2 cạnh tranh điểm sòng phẳng với thí sinh đặt ở NV1.</li>
+              <li>Hệ thống chạy từ trên xuống dưới, chỉ xác nhận trúng tuyển vào <strong>1 nguyện vọng duy nhất có thứ tự ưu tiên cao nhất</strong> thỏa điều kiện.</li>
+            </ul>
+          </div>
+
+          <div style="background: var(--bg-card-subtle); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+            <h4 style="font-size: 1.05rem; font-weight: 800; margin-bottom: 0.75rem; color: var(--text-main); display: flex; align-items: center; gap: 0.5rem;">
+              <i class="fa-solid fa-language" style="color: var(--success);"></i> 3. Xét tuyển kết hợp Chứng chỉ Quốc tế
+            </h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6;">
+              Các trường top như Bách Khoa, Kinh tế Quốc dân, Ngoại thương áp dụng tuyển sinh kết hợp chứng chỉ IELTS/SAT/ACT:
+            </p>
+            <ul style="font-size: 0.85rem; color: var(--text-muted); padding-left: 1.25rem; margin-top: 0.5rem; line-height: 1.6;">
+              <li>IELTS 5.5 - 6.0: Được miễn thi tốt nghiệp THPT môn Ngoại ngữ (tính 10 điểm tốt nghiệp) và quy đổi từ 8.5 - 9.0 điểm xét đại học.</li>
+              <li>IELTS 6.5 - 7.0: Quy đổi từ 9.5 đến 10.0 điểm môn tiếng Anh.</li>
+              <li>IELTS 7.5+: Đạt 10.0 tuyệt đối kèm điểm cộng thưởng từ 0.5 - 1.5 điểm tùy đề án trường.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Modal Chi Tiết Ngành & Biểu Đồ Xu Hướng -->
+  <div class="modal-overlay" id="majorDetailModal">
+    <div class="modal-container">
+      <button class="modal-close-btn" id="btnCloseModal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+        <span class="uni-code-tag" id="modalUniCode">BKA</span>
+        <span style="font-size: 0.9rem; font-weight: 700; color: var(--text-muted);" id="modalUniName">ĐH Bách Khoa Hà Nội</span>
+      </div>
+
+      <h3 style="font-size: 1.45rem; font-weight: 900; line-height: 1.3; margin-bottom: 0.35rem;" id="modalMajorName">
+        Khoa học máy tính
+      </h3>
+      <div style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 1.25rem;" id="modalMajorCode">
+        Mã ngành: IT1
+      </div>
+
+      <!-- Sparkline Trend Chart -->
+      <div class="trend-chart-box">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+          <span style="font-weight: 800; font-size: 0.95rem;">
+            <i class="fa-solid fa-chart-line" style="color: var(--primary);"></i> Biểu Đồ Điểm Chuẩn 3 Năm (2022 - 2024)
+          </span>
+          <span id="modalTrendBadge" class="badge" style="background: var(--primary-light); color: var(--primary); font-size: 0.75rem; padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 700;">
+            Biến động: +0.92đ
+          </span>
+        </div>
+        <div class="trend-chart-canvas-wrap">
+          <canvas id="trendChartCanvas"></canvas>
+        </div>
+      </div>
+
+      <!-- Information List -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+        <div style="background: var(--bg-card-subtle); padding: 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+          <div style="font-size: 0.75rem; color: var(--text-muted);">Tổ hợp xét tuyển:</div>
+          <div style="font-weight: 800; font-size: 1rem; color: var(--primary);" id="modalCombos">A00, A01</div>
+        </div>
+        <div style="background: var(--bg-card-subtle); padding: 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+          <div style="font-size: 0.75rem; color: var(--text-muted);">Chỉ tiêu tuyển sinh:</div>
+          <div style="font-weight: 800; font-size: 1rem;" id="modalQuota">300 sinh viên</div>
+        </div>
+        <div style="background: var(--bg-card-subtle); padding: 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+          <div style="font-size: 0.75rem; color: var(--text-muted);">Học phí dự kiến:</div>
+          <div style="font-weight: 800; font-size: 0.95rem;" id="modalTuition">35 - 45 triệu/năm</div>
+        </div>
+        <div style="background: var(--bg-card-subtle); padding: 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+          <div style="font-size: 0.75rem; color: var(--text-muted);">Tiêu chí phụ:</div>
+          <div style="font-weight: 700; font-size: 0.85rem; color: var(--text-main);" id="modalSubCriteria">Toán >= 9.2</div>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 1.5rem; font-size: 0.88rem; color: var(--text-muted);" id="modalNote">
+        Ghi chú: Ngành có điểm chuẩn cao nhất toàn quốc khối Kỹ thuật.
+      </div>
+
+      <div style="display: flex; gap: 0.75rem;">
+        <button type="button" class="btn-calc-action" id="btnModalAddWishlist" style="flex: 1;">
+          <i class="fa-solid fa-plus"></i> Thêm Vào Danh Sách Nguyện Vọng
+        </button>
+        <a id="modalUniLink" href="#" target="_blank" class="btn-wishlist-tool" style="padding: 0.85rem 1.25rem;">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> Xem Website Trường
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
